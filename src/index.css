@@ -1,5 +1,6 @@
 body {
     background-color: #d162b3;
-background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    background-image: url('/src/images/spencer-davis-5dsZnCVDHd0-unsplash.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
