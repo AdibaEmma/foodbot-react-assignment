@@ -42,14 +42,6 @@ const OrderSummary = () => {
               </div>
             </div>
             <div className="col-lg-7">
-              <div>
-                <div>
-                  Resturant
-                </div>
-                <div>
-                  User
-                </div>
-              </div>
               <div className="table-responsive">
                 <table className="table text-nowrap">
                   <thead>
