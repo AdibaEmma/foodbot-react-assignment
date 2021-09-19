@@ -1,16 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-
+import { connect } from 'react-redux'
 import Order from './Order/Order'
 import { order_details } from '../../actions/orders'
-const OrderSummary = () => {
-  const dispatch = useDispatch()
-
+import burgerCheese from '../../images/burger-cheese.jpg'
+import burgeChicken from '../../images/burger-chicken.jpg'
+const OrderSummary = ({ order, order_details }) => {
   useEffect(() => {
-    dispatch(order_details)
-  }, [dispatch])
+    order_details()
+  }, [order_details])
 
+  console.log('Order', order);
     return (
         <div>
       <section className="py-5">
@@ -48,9 +48,9 @@ const OrderSummary = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <Order />
-                    <Order />
-                    <Order />
+                    <Order  image={ burgerCheese } />
+                    <Order image={ burgeChicken } />
+                    <Order image={ burgerCheese} />
                   </tbody>
                   <tfoot>
                     <tr>
@@ -84,4 +84,7 @@ const OrderSummary = () => {
     )
 }
 
-export default OrderSummary
+const mapStateToProps = (state) => {
+  return { order: state.order}
+}
+export default connect(mapStateToProps, { order_details })(OrderSummary)

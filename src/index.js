@@ -13,8 +13,10 @@ const store = createStore(reducers, /* preloadedState, */ composeEnhancers(apply
 
 ReactDOM.render(
   <Provider store={store}>
+  <React.StrictMode>
     <App />
-  </Provider>,
+  </React.StrictMode>
+</Provider>,
   document.getElementById('root')
 );
 
