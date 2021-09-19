@@ -1,24 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 import Order from './Order/Order'
-import { order_details } from '../../actions/orders'
 import burgerCheese from '../../images/burger-cheese.jpg'
 import burgeChicken from '../../images/burger-chicken.jpg'
 import chickenManchurian from '../../images/chicken-manchurian.jpg'
 import chilliPepper from '../../images/chilli-pepper.jpg'
 
-const OrderSummary = ({ order, order_details }) => {
-
-  const product_images = [ burgerCheese, burgeChicken, chilliPepper, chickenManchurian ]
-
-  useEffect(() => {
-    order_details()
-  }, [order_details])
+const OrderSummary = ({ order }) => {
 console.log(order);
+const product_images = [ burgerCheese, burgeChicken, chilliPepper, chickenManchurian ]
+
 const prices = order?.items?.map( item => item.price)
 const subTotal = prices?.reduce(( prevValue, currentValue) => currentValue + prevValue)
 const taxPrices = order?.items?.map( item => item.price * (item.tax_pct / 100) )
@@ -131,7 +124,4 @@ const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevV
     )
 }
 
-const mapStateToProps = (state) => {
-  return { order: state.order}
-}
-export default connect(mapStateToProps, { order_details })(OrderSummary)
+export default OrderSummary
