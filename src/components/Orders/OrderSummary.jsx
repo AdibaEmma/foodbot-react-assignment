@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
+
 import Order from './Order/Order'
 import { order_details } from '../../actions/orders'
 import burgerCheese from '../../images/burger-cheese.jpg'
@@ -10,13 +12,12 @@ const OrderSummary = ({ order, order_details }) => {
     order_details()
   }, [order_details])
 
-  console.log('Order', order);
     return (
         <div>
       <section className="py-5">
         <div className="container">
           <div className="p-4 bg-gray-200">
-            <p className="lead mb-4">Order #1735 was placed on <strong>22/06/2013</strong> and is currently <strong>being prepared</strong>.</p>
+            <p className="lead mb-4">Order { order.order_id} was placed on <strong>{ moment(order.createdAt).format("dddd, MMMM Do YYYY h:mm:ss a") }</strong> and is currently <strong>being prepared</strong>.</p>
           </div>
           <div className="row gy-5">
           <div className="col-lg-5">
