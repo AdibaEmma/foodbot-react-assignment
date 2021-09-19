@@ -7,17 +7,20 @@ import Order from './Order/Order'
 import { order_details } from '../../actions/orders'
 import burgerCheese from '../../images/burger-cheese.jpg'
 import burgeChicken from '../../images/burger-chicken.jpg'
+
 const OrderSummary = ({ order, order_details }) => {
+
+  const product_images = [ burgerCheese, burgeChicken, burgerCheese, burgeChicken ]
   useEffect(() => {
     order_details()
   }, [order_details])
-
+console.log(order);
     return (
         <div>
       <section className="py-5">
         <div className="container">
           <div className="p-4 bg-gray-200">
-            <p className="lead mb-4">Order { order.order_id} was placed on <strong>{ moment(order.createdAt).format("dddd, MMMM Do YYYY h:mm:ss a") }</strong> and is currently <strong>being prepared</strong>.</p>
+            <p className="lead mb-4">Order { order.order_id } was placed on <strong>{ moment(order.createdAt).format("dddd, MMMM Do YYYY h:mm:ss a") }</strong> and is currently <strong>being prepared</strong>.</p>
           </div>
           <div className="row gy-5">
           <div className="col-lg-5">
@@ -43,15 +46,24 @@ const OrderSummary = ({ order, order_details }) => {
                     <tr className="text-sm">
                       <th className="border-gray-300 border-top py-3" colSpan="2">Product</th>
                       <th className="border-gray-300 border-top py-3">Quantity</th>
-                      <th className="border-gray-300 border-top py-3">Unit price</th>
+                      <th className="border-gray-300 border-top py-3">Price</th>
                       <th className="border-gray-300 border-top py-3">Tax</th>
                       <th className="border-gray-300 border-top py-3">Total</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <Order  image={ burgerCheese } />
-                    <Order image={ burgeChicken } />
-                    <Order image={ burgerCheese} />
+                    {
+                      order.items.map( (item,index) => (
+                          <Order 
+                            image={ product_images[index] } 
+                            name={item.name} 
+                            category={item.category}
+                            price={item.price}
+                            quantity={item.quantity}
+                            tax_pct={item.tax_pct}
+                        />
+                      )
+                      )}
                   </tbody>
                   <tfoot>
                     <tr>
@@ -69,14 +81,6 @@ const OrderSummary = ({ order, order_details }) => {
                   </tfoot>
                 </table>
               </div>
-              {/* <div className="align-items-center bg-light px-4 py-3 text-center mb-5">
-                <div className="row">
-                  <div className="col-md-6 text-md-start py-1"><a className="btn btn-secondary my-1" href="#"><i className="fas fa-angle-left me-1"></i> Back to orders</a></div>
-                  <div className="col-md-6 text-md-end py-1">
-                    <button className="btn btn-primary my-1" type="submit">Place the order<i className="fas fa-angle-right ms-1"></i></button>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
