@@ -29,7 +29,8 @@ const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevV
       <section className="py-5">
         <div className="container">
           <div className="p-4 bg-gray-200">
-            <p className="lead mb-4">Order <span className="">{ order?.order_id }</span> was placed on <strong>{ moment(order?.createdAt).format("dddd, MMMM Do YYYY h:mm:ss a") }</strong> and is currently <strong>being prepared</strong>.</p>
+          <Link to="/orders"><i className="fas fa-arrow-left fa-2x mb-4"></i></Link>
+            <p className="lead mb-4"> Order <span className="">{ order?.order_id }</span> was placed on <strong>{ moment(order?.createdAt).format("dddd, MMMM Do YYYY h:mm:ss a") }</strong> and is currently <strong>being prepared</strong>.</p>
           </div>
           <div className="row gy-5">
           <div className="col-lg-5">
