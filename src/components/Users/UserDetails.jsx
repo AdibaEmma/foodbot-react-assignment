@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Avatar from '../../images/avatar3.jpg'
 
 const UserDetails = ({ user }) => {
+    console.log(user);
     return (
         <>
             <section className="py-5">
@@ -15,27 +16,27 @@ const UserDetails = ({ user }) => {
                     <p className="card-text">
                     <div className="row py-2">
                         <div className="col-2"><i className="fas fa-user fa-lg"></i></div>
-                        <div className="col-10 small">{ user.name }</div>
+                        <div className="col-10 small">{ user?.name }</div>
                     </div>
                     <div className="row py-2">
                         <div className="col-2"><i className="fas fa-phone fa-lg"></i></div>
-                        <div className="col-10 small">{ user.phone }</div>
+                        <div className="col-10 small">{ user?.phone }</div>
                     </div>
                     <div className="row py-2">
                         <div className="col-2"><i className="fas fa-map-pin fa-lg"></i></div>
-                        <div className="col-10 small">{user.address}</div>
+                        <div className="col-10 small">{user?.address}</div>
                     </div>
                     <div className="row py-2">
                         <div className="col-2"><i className="fas fa-info fa-lg"></i></div>
-                        <div className="col-10 small">{user.about}</div>
+                        <div className="col-10 small">{user?.about}</div>
                     </div>
                     <div className="row py-2">
                         <div className="col-2"><i className="fas fa-heart fa-lg"></i></div>
-                        <div className="col-10 small">{user.likes}</div>
+                        <div className="col-10 small likes">{user?.likes.map( like => `${like} `) }</div>
                     </div>
                     <div className="row py-2">
                         <div className="col-2"><i className="fas fa-heart-broken fa-lg"></i></div>
-                        <div className="col-10 small">{user.dislikes}</div>
+                        <div className="col-10 small">{user?.dislikes.map( dislike => `${dislike} `) }</div>
                     </div>
                     </p>
                     <Link to="/orders" className="btn btn-primary">View Orders</Link>
