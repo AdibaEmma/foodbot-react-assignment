@@ -10,6 +10,7 @@ import burgerCheese from '../../images/burger-cheese.jpg'
 import burgeChicken from '../../images/burger-chicken.jpg'
 import chickenManchurian from '../../images/chicken-manchurian.jpg'
 import chilliPepper from '../../images/chilli-pepper.jpg'
+
 const OrderSummary = ({ order, order_details }) => {
 
   const product_images = [ burgerCheese, burgeChicken, chilliPepper, chickenManchurian ]
@@ -24,7 +25,7 @@ const taxPrices = order?.items?.map( item => item.price * (item.tax_pct / 100) )
 const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevValue)
 
     return (
-        <div>
+        <>
       <section className="py-5">
         <div className="container">
           <div className="p-4 bg-gray-200">
@@ -40,7 +41,7 @@ const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevV
         <p className="card-text">
         <div className="row">
             <div className="col-2"><i className="fas fa-user fa-lg"></i></div>
-            <div className="col-10">{ order?.user?.name }</div>
+            <div className="col-10"><Link to={`/users/${order?.user?.id}`}>{ order?.user?.name }</Link></div>
           </div>
         </p>
         <p className="card-text">
@@ -125,7 +126,7 @@ const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevV
           </div>
         </div>
       </section>
-      </div>
+      </>
     )
 }
 
