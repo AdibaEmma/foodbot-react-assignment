@@ -11,7 +11,7 @@ function App({ order, order_details }) {
   useEffect(() => {
     order_details()
   }, [order_details])
-console.log(order);
+
   return (
     <div className="container mt-3 bg-white">
       <BrowserRouter>
