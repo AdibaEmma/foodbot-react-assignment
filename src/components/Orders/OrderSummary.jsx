@@ -12,24 +12,23 @@ import chilliPepper from '../../images/chilli-pepper.jpg'
 
 
 const OrderSummary = ({ order }) => {
-console.log(order);
-const product_images = [ burgerCheese, burgeChicken, chilliPepper, chickenManchurian ]
+  const product_images = [ burgerCheese, burgeChicken, chilliPepper, chickenManchurian ]
 
-const prices = order?.items?.map( item => item.price)
-const subTotal = prices?.reduce(( prevValue, currentValue) => currentValue + prevValue)
-const taxPrices = order?.items?.map( item => item.price * (item.tax_pct / 100) )
-const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevValue)
+  const prices = order?.items?.map( item => item.price)
+  const subTotal = prices?.reduce(( prevValue, currentValue) => currentValue + prevValue)
+  const taxPrices = order?.items?.map( item => item.price * (item.tax_pct / 100) )
+  const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevValue)
 
-const [isOpen, setIsOpen ] = useState(false)
+  const [isOpen, setIsOpen ] = useState(false)
   const handleClose = () => setIsOpen(false);
-  const handleShow = () => setIsOpen(true);
+
     return (
         <>
       <section className="py-5">
         <div className="container">
           <div className="p-4 bg-gray-200">
           <Link to={`/users/${order?.user?.id}`}><i className="fas fa-arrow-left fa-2x mb-4"></i></Link>
-            <p className="lead mb-4"> Order <span className="">{ order?.order_id }</span> was placed on <strong>{ moment(order?.createdAt).format("dddd, MMMM Do YYYY h:mm:ss a") }</strong> and is currently <strong>being prepared</strong>.</p>
+          <p className="lead mb-4"> Order <span className="">{ order?.order_id }</span> was placed on <strong>{ moment(order?.createdAt).format("dddd, MMMM Do YYYY h:mm:ss a") }</strong> and is currently <strong>being prepared</strong>.</p>
           </div>
           <div className="row gy-5">
           <div className="col-lg-5">
@@ -94,6 +93,10 @@ const [isOpen, setIsOpen ] = useState(false)
                   </thead>
                   <tbody>
                     {
+                      /*
+                        If order items length is greater than 5 than the else part of the tenary is executed, a button becomes
+                        avialable and when clicked the order items are viewed in a modal.
+                      */
                       order?.items?.length < 2 ? // this checks for if the order items length exceeds a threshold: 5
                       order?.items?.map( (item,index) => 
                           <Order
@@ -108,7 +111,6 @@ const [isOpen, setIsOpen ] = useState(false)
 
                       ) :
                       <tr><td className="text-center" colSpan="7"><button className="btn btn-primary" onClick={ () => setIsOpen(true)}>View all items in your order</button></td></tr>
-                      
                     }
                     { isOpen && <OrderModal order={order} show={isOpen} handleClose={handleClose} /> }
                   </tbody>
