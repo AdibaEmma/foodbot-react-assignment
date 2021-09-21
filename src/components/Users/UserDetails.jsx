@@ -6,7 +6,6 @@ import Orders from "../Orders/Orders";
 
 const UserDetails = ({ order }) => {
         const { user } = order
-    console.log(user);
     return (
         <>
             <section className="py-5">

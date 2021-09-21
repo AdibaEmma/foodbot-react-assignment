@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 import Order from './Order/Order'
+import OrderModal from '../Modal/OrderModal'
 import burgerCheese from '../../images/burger-cheese.jpg'
 import burgeChicken from '../../images/burger-chicken.jpg'
 import chickenManchurian from '../../images/chicken-manchurian.jpg'
 import chilliPepper from '../../images/chilli-pepper.jpg'
+
 
 const OrderSummary = ({ order }) => {
 console.log(order);
@@ -17,12 +20,15 @@ const subTotal = prices?.reduce(( prevValue, currentValue) => currentValue + pre
 const taxPrices = order?.items?.map( item => item.price * (item.tax_pct / 100) )
 const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevValue)
 
+const [isOpen, setIsOpen ] = useState(false)
+  const handleClose = () => setIsOpen(false);
+  const handleShow = () => setIsOpen(true);
     return (
         <>
       <section className="py-5">
         <div className="container">
           <div className="p-4 bg-gray-200">
-          <Link to="/orders"><i className="fas fa-arrow-left fa-2x mb-4"></i></Link>
+          <Link to={`/users/${order?.user?.id}`}><i className="fas fa-arrow-left fa-2x mb-4"></i></Link>
             <p className="lead mb-4"> Order <span className="">{ order?.order_id }</span> was placed on <strong>{ moment(order?.createdAt).format("dddd, MMMM Do YYYY h:mm:ss a") }</strong> and is currently <strong>being prepared</strong>.</p>
           </div>
           <div className="row gy-5">
@@ -88,7 +94,8 @@ const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevV
                   </thead>
                   <tbody>
                     {
-                      order?.items?.map( (item,index) => (
+                      order?.items?.length < 2 ?
+                      order?.items?.map( (item,index) => 
                           <Order
                             key={index}
                             image={ product_images[index] } 
@@ -97,8 +104,13 @@ const tax = taxPrices?.reduce(( prevValue, currentValue) => currentValue + prevV
                             price={item.price}
                             quantity={item.quantity}
                             tax_pct={item.tax_pct}
-                        />
-                      ))}
+                          />
+
+                      ) :
+                      <tr><td className="text-center" colSpan="7"><button className="btn btn-primary" onClick={ () => setIsOpen(true)}>View all items in your order</button></td></tr>
+                      
+                    }
+                    { isOpen && <OrderModal show={isOpen} handleClose={handleClose} /> }
                   </tbody>
                   <tfoot>
                     <tr>

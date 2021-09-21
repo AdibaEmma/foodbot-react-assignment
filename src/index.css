@@ -5,6 +5,14 @@ body {
     background-repeat: repeat-x;
 }
 
+a {
+  color: #000;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 ::-webkit-scrollbar {
     width: 15px;
   }
