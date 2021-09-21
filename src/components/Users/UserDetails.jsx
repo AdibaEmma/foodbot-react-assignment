@@ -10,7 +10,7 @@ const UserDetails = ({ order }) => {
             <section className="py-5">
             <div className="container">
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-lg-4">
                     <div className="card" style={{width: "18rem"}} >
                 <img src={Avatar} className="card-img-top" alt="Avatar" />
                 <div className="card-body">
@@ -41,13 +41,13 @@ const UserDetails = ({ order }) => {
                             <div className="col-10 small">{user?.dislikes.map( dislike => `${dislike} `) }</div>
                         </div>
                     </div>
+                    </div>
+                </div>
+                </div>
+                <div className="col-lg-8">
+                <Orders order={ order } />
                 </div>
             </div>
-                    </div>
-                    <div className="col-8">
-                    <Orders order={ order } />
-                    </div>
-                </div>
 
             
             </div>

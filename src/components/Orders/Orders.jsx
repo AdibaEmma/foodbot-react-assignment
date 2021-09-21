@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 const Orders = ({ order }) => {
     return (
         <div className="table-responsive">
-        <h4 className="header mb-2">My Orders</h4>
-            <table class="table table-hover">
+        <h4 className="header my-2">My Orders</h4>
+            <table className="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
