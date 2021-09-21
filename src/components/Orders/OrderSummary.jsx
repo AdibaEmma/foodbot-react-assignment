@@ -94,7 +94,7 @@ const [isOpen, setIsOpen ] = useState(false)
                   </thead>
                   <tbody>
                     {
-                      order?.items?.length < 2 ?
+                      order?.items?.length < 2 ? // this checks for if the order items length exceeds a threshold: 5
                       order?.items?.map( (item,index) => 
                           <Order
                             key={index}
@@ -110,7 +110,7 @@ const [isOpen, setIsOpen ] = useState(false)
                       <tr><td className="text-center" colSpan="7"><button className="btn btn-primary" onClick={ () => setIsOpen(true)}>View all items in your order</button></td></tr>
                       
                     }
-                    { isOpen && <OrderModal show={isOpen} handleClose={handleClose} /> }
+                    { isOpen && <OrderModal order={order} show={isOpen} handleClose={handleClose} /> }
                   </tbody>
                   <tfoot>
                     <tr>
