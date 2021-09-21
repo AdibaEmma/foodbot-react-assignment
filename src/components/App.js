@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { order_details } from '../actions/orders'
 import OrderSummary from "./Orders/OrderSummary";
 import UserDetails from './Users/UserDetails';
-import Orders from "./Orders/Orders";
 
 function App({ order, order_details }) {
 
@@ -18,10 +17,7 @@ console.log(order);
       <BrowserRouter>
         <Switch>
           <Route path="/" exact render={ props => <OrderSummary { ...props } order={order} />} /> 
-
-            } /> 
-          <Route path="/users/:id" exact render={ props => <UserDetails { ...props } user={order.user} />} />
-          <Route path="/orders" exact component={Orders} />
+          <Route path="/users/:id" exact render={ props => <UserDetails { ...props } order={order} />} />
         </Switch>
       </BrowserRouter>
     </div>

@@ -2,14 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Avatar from '../../images/avatar3.jpg'
+import Orders from "../Orders/Orders";
 
-const UserDetails = ({ user }) => {
+const UserDetails = ({ order }) => {
+        const { user } = order
     console.log(user);
     return (
         <>
             <section className="py-5">
             <div className="container">
-            <div className="card" style={{width: "18rem"}} >
+                <div className="row">
+                    <div className="col-4">
+                    <div className="card" style={{width: "18rem"}} >
                 <img src={Avatar} className="card-img-top" alt="Avatar" />
                 <div className="card-body">
                     <h5 className="card-title">Profile</h5>
@@ -39,9 +43,15 @@ const UserDetails = ({ user }) => {
                         <div className="col-10 small">{user?.dislikes.map( dislike => `${dislike} `) }</div>
                     </div>
                     </p>
-                    <Link to="/orders" className="btn btn-primary">View Orders</Link>
                 </div>
             </div>
+                    </div>
+                    <div className="col-8">
+                    <Orders order={ order } />
+                    </div>
+                </div>
+
+            
             </div>
             </section>
         </>
