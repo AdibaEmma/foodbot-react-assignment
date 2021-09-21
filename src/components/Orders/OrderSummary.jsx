@@ -37,24 +37,24 @@ const OrderSummary = ({ order }) => {
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">Ordered by:</h5>
-        <p className="card-text">
+        <div className="card-text">
         <div className="row">
             <div className="col-2"><i className="fas fa-user fa-lg"></i></div>
             <div className="col-10"><Link to={`/users/${order?.user?.id}`}>{ order?.user?.name }</Link></div>
           </div>
-        </p>
-        <p className="card-text">
+        </div>
+        <div className="card-text">
         <div className="row">
             <div className="col-2"><i className="fas fa-phone fa-lg"></i></div>
             <div className="col-10">{ order?.user?.phone }</div>
           </div>
-        </p>
-        <p className="card-text">
+        </div>
+        <div className="card-text">
           <div className="row">
             <div className="col-2"><i className="fas fa-map-marker-alt fa-lg"></i></div>
             <div className="col-10">{ order?.user?.address }</div>
           </div>
-        </p>
+        </div>
       </div>
     </div>
   </div>
@@ -62,18 +62,18 @@ const OrderSummary = ({ order }) => {
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">{ order?.restaurant?.name }</h5>
-        <p className="card-text">
+        <div className="card-text">
           <div className="row">
             <div className="col-2"><i className="fas fa-location-arrow fa-lg px-2" aria-hidden="true"></i></div>
             <div className="col-10">{ order?.restaurant?.street }, {order?.restaurant?.state }</div>
           </div>
-          </p>
-        <p className="card-text">
-        <div className="row">
-            <div className="col-2"><i className="fas fa-globe-africa fa-lg px-2" aria-hidden="true"></i></div>
-            <div className="col-10">{ order?.restaurant?.city }, { order?.restaurant?.zipcode}</div>
           </div>
-        </p>
+        <div className="card-text">
+          <div className="row">
+              <div className="col-2"><i className="fas fa-globe-africa fa-lg px-2" aria-hidden="true"></i></div>
+              <div className="col-10">{ order?.restaurant?.city }, { order?.restaurant?.zipcode}</div>
+            </div>
+        </div>
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@ const OrderSummary = ({ order }) => {
                         If order items length is greater than 5 than the else part of the tenary is executed, a button becomes
                         avialable and when clicked the order items are viewed in a modal.
                       */
-                      order?.items?.length < 2 ? // this checks for if the order items length exceeds a threshold: 5
+                      order?.items?.length < 5 ? // this checks for if the order items length exceeds a threshold: 5
                       order?.items?.map( (item,index) => 
                           <Order
                             key={index}
